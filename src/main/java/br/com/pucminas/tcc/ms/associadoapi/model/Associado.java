@@ -11,11 +11,11 @@ import javax.persistence.Table;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
-@Table(name = "associado", schema = "associado")
+//@Entity
+//@Table(name = "associado", schema = "associado")
 public class Associado {
 
-    @Id
+    //@Id
     private Long id;
 
 }

@@ -15,23 +15,21 @@ spring:
 
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/assinante_db
-    username: "user_assinante"
-    password: "pwd_assinante"
+    url: jdbc:postgresql://localhost:5432/associado_db
+    username: "user_associado"
+    password: "pwd_associado"
 
   flyway:
     enabled: true
     clean-disabled: true
     ignore-missing-migrations: true
     out-of-order: true
+    schemas: associado
+    default-schema: associado
     table: flyway_schema_history
     url: ${spring.datasource.url}
     user: ${spring.datasource.username}
     password: ${spring.datasource.password}
-    placeholders:
-      SCHEMA_NAME: associado
-      TABLESPACE_INDEX: associado_index
-      TABLESPACE_DATA: associado_data
 
 logging:
   level:
