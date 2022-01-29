@@ -1,4 +1,4 @@
-create table assinante.pessoa_fisica
+create table associado.pessoa_fisica
 (
     idt_pessoa_fisica bigint      not null,
     nom_pessoa        varchar(40) not null,
@@ -6,14 +6,14 @@ create table assinante.pessoa_fisica
     dat_nascimento    date        not null
 );
 
-alter table assinante.pessoa_fisica
+alter table associado.pessoa_fisica
     add constraint pk_pessoa_fisica primary key (idt_pessoa_fisica);
 
-create unique index uk_pessoa_fisica_cpf on assinante.pessoa_fisica (num_cpf);
+create unique index uk_pessoa_fisica_cpf on associado.pessoa_fisica (num_cpf);
 
-create sequence assinante.sq_pessoa_fisica
+create sequence associado.sq_pessoa_fisica
     increment by 1
     start with 1
     minvalue 1
     no cycle
-    owned by assinante.pessoa_fisica.idt_pessoa_fisica
+    owned by associado.pessoa_fisica.idt_pessoa_fisica
