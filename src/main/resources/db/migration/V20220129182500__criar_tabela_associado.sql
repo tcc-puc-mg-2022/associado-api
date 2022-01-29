@@ -25,3 +25,9 @@ alter table associado.associado
 
 comment on column associado.associado.categoria IS 'Categoria do associado. Valores possíveis: 1: Ativo, 2: Suspenso, 3: Inativo';
 comment on column associado.associado.tipo IS 'Tipo de associação. Valores possíveis: 1: Individual, 2: Empresarial';
+
+create sequence associado.sq_associado
+    increment by 1
+    start with 1
+    minvalue 1
+    no cycle owned by associado.associado.id
