@@ -1,0 +1,46 @@
+spring:
+  application:
+    name: "associado-api"
+
+  jpa:
+    database: postgresql
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        default_schema: associado
+        generate_statistics: true
+        format_sql: true
+    show-sql: true
+
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/assinante_db
+    username: "user_assinante"
+    password: "pwd_assinante"
+
+  flyway:
+    enabled: true
+    clean-disabled: true
+    ignore-missing-migrations: true
+    out-of-order: true
+    table: flyway_schema_history
+    url: ${spring.datasource.url}
+    user: ${spring.datasource.username}
+    password: ${spring.datasource.password}
+    placeholders:
+      SCHEMA_NAME: associado
+      TABLESPACE_INDEX: associado_index
+      TABLESPACE_DATA: associado_data
+
+logging:
+  level:
+    org.springframework.web: INFO
+    org.hibernate: INFO
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type: TRACE
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+    org.hibernate.stat: DEBUG
+    br.com.poupex.ffa.adminstration.api: DEBUG
+    org.flywaydb: TRACE
+    org.flywaydb.core.internal.dbsupport.SqlScript: TRACE
