@@ -6,9 +6,7 @@ import lombok.RequiredArgsConstructor;
 @Getter
 @RequiredArgsConstructor
 public enum TipoAssociadoEnum {
-
     INDIVIDUAL(1),
     EMPRESARIAL(2);
-
     final Integer tipo;
 }

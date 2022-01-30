@@ -12,6 +12,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
@@ -29,7 +30,7 @@ public class AssociadoController {
     @ApiOperation(value = "Salvar um novo associado", response = AssociadoResponse.class)
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public AssociadoResponse salvar(@RequestBody AssociadoRequest request) {
+    public AssociadoResponse salvar(@Validated @RequestBody AssociadoRequest request) {
         return this.entityToResponse(service.cadastrar(this.requestToEntity(request)));
     }
 

@@ -1,5 +1,6 @@
 package br.com.pucminas.tcc.ms.associadoapi.model;
 
+import br.com.pucminas.tcc.ms.associadoapi.converter.CategoriaCoverter;
 import lombok.*;
 
 import javax.persistence.*;
@@ -20,7 +21,7 @@ public class Associado {
     @Column(name = "id", nullable = false, updatable = false, unique = true)
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "id_pessoa_fisica", nullable = false, updatable = false)
     private PessoaFisica pessoaFisica;
 
@@ -28,13 +29,13 @@ public class Associado {
     @JoinColumn(name = "id_plano", nullable = false)
     private Plano plano;
 
+    @Column(name = "categoria", nullable = false)
+    @Convert(converter = CategoriaCoverter.class)
+    private CategoriaEnum categoria;
+
     @Column(name = "tipo", nullable = false)
     private TipoAssociadoEnum tipo;
 
-    @Column(name = "categoria", nullable = false)
-    private CategoriaEnum categoria;
-
     @Column(name = "valor", nullable = false)
     private BigDecimal valor;
-
 }
