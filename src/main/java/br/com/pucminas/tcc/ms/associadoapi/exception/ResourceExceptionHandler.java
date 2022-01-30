@@ -20,7 +20,7 @@ import org.springframework.web.server.ResponseStatusException;
 @Slf4j
 public class ResourceExceptionHandler {
 
-    final static String MSG_ERROR_BASE = "Erro ao excutar operação";
+    private static final String MSG_ERROR_BASE = "Erro ao excutar operação";
 
     @ExceptionHandler(ResponseStatusException.class)
     public ResponseEntity<Object> handleValidationExceptions(ResponseStatusException ex) {
