@@ -1,12 +1,13 @@
 package br.com.pucminas.tcc.ms.associadoapi.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 
 @Builder
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -29,5 +30,11 @@ public class Associado {
 
     @Column(name = "tipo", nullable = false)
     private TipoAssociadoEnum tipo;
+
+    @Column(name = "categoria", nullable = false)
+    private CategoriaEnum categoria;
+
+    @Column(name = "valor", nullable = false)
+    private BigDecimal valor;
 
 }
