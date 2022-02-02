@@ -13,6 +13,7 @@ import lombok.experimental.FieldDefaults;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
@@ -31,6 +32,14 @@ public class AssociadoController {
     @ResponseStatus(HttpStatus.CREATED)
     public AssociadoResponse salvar(@Validated @RequestBody AssociadoRequest request) {
         return this.entityToResponse(service.cadastrar(this.requestToEntity(request)));
+    }
+
+    @ApiOperation(value = "Faz a solicitação da carteirinha do associado")
+    @PostMapping("{idAssociado}/carteirinha")
+    @ResponseStatus(HttpStatus.OK)
+    public void solicitarCarteirinha(@PathVariable Long idAssociado) {
+        this.service.solicitarCarteirinha(this.service.buscarPorId(idAssociado)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND)));
     }
 
     private Associado requestToEntity(AssociadoRequest request) {
@@ -56,6 +65,7 @@ public class AssociadoController {
                         .nome(associado.getPlano().getNome())
                         .valor(associado.getValor())
                         .build())
+                .carteirinha(associado.getSitCarteirinha())
                 .build();
     }
 

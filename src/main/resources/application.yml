@@ -31,6 +31,16 @@ spring:
     user: ${spring.datasource.username}
     password: ${spring.datasource.password}
 
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: admin
+    password: admin
+
+rabbitmq:
+  queue:
+    consume: "associado.cart.out"
+
 logging:
   level:
     org.springframework.web: INFO

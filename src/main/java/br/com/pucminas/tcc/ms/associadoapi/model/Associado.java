@@ -1,6 +1,7 @@
 package br.com.pucminas.tcc.ms.associadoapi.model;
 
 import br.com.pucminas.tcc.ms.associadoapi.converter.CategoriaCoverter;
+import br.com.pucminas.tcc.ms.associadoapi.converter.SitCarteirinhaCoverter;
 import lombok.*;
 
 import javax.persistence.*;
@@ -38,4 +39,8 @@ public class Associado {
 
     @Column(name = "valor", nullable = false)
     private BigDecimal valor;
+
+    @Column(name = "sit_carteirinha", nullable = false)
+    @Convert(converter = SitCarteirinhaCoverter.class)
+    private SituacaoCarteirinhaEnum sitCarteirinha;
 }
