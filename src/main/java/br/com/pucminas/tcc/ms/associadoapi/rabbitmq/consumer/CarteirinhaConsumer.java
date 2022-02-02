@@ -18,11 +18,11 @@ public class CarteirinhaConsumer {
     @NonNull
     private AssociadoService service;
 
-    @RabbitListener(queues = "${rabbitmq.queue.consume}")
+    @RabbitListener(queues = "associado.cart.out")
     public void receiveMessage(String message) {
         final var id = message.split("_id_")[1];
-        if(Objects.nonNull(id)) {
-            this.service.finalizarEmissaoCarteirinha(Long.getLong(id));
+        if (Objects.nonNull(id)) {
+            this.service.finalizarEmissaoCarteirinha(Long.parseLong(id));
         }
     }
 }
