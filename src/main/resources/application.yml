@@ -52,3 +52,15 @@ logging:
     br.com.poupex.ffa.adminstration.api: DEBUG
     org.flywaydb: TRACE
     org.flywaydb.core.internal.dbsupport.SqlScript: TRACE
+
+keycloak:
+  auth-server-url: http://localhost:8080/auth
+  realm: pucminas
+  resource: associado-api
+  public-client: true
+  use-resource-role-mappings: true
+  credentials:
+    secret: eFbr2PlVXUMoAmEXJmNUo7djw4FoHvXf
+
+server:
+  port: 8082
