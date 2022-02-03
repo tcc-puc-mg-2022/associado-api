@@ -21,7 +21,7 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 @FieldDefaults(makeFinal = true, level = AccessLevel.PRIVATE)
 @Api(tags = "Associados", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
 @RestController
-@RequestMapping("v1/associados")
+@RequestMapping("/v1/associados")
 public class AssociadoController {
 
     @NonNull
@@ -67,6 +67,11 @@ public class AssociadoController {
                         .build())
                 .carteirinha(associado.getSitCarteirinha())
                 .build();
+    }
+
+    @GetMapping("/protected")
+    public String get() {
+        return "API de Assocaidos";
     }
 
 }

@@ -1,7 +1,9 @@
 spring:
   application:
-    name: "associado-api"
-
+    name: @project.artifactId@
+  main:
+    banner-mode: off
+    allow-bean-definition-overriding: true
   jpa:
     database: postgresql
     hibernate:
@@ -9,27 +11,29 @@ spring:
     properties:
       hibernate:
         default_schema: associado
-        generate_statistics: true
+        generate_statistics: false
         format_sql: true
     show-sql: true
-
+    open-in-view: false
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/associado_db
+    url: jdbc:postgresql://localhost:7432/dbassociado?currentSchema=associado
     username: "user_associado"
-    password: "pwd_associado"
-
+    password: "user_associado"
+    hikari:
+      maximum-pool-size: 10
+      max-lifetime: 300000
   flyway:
     enabled: true
-    clean-disabled: true
-    ignore-missing-migrations: true
-    out-of-order: true
-    schemas: associado
-    default-schema: associado
-    table: flyway_schema_history
+    table: FLYWAY_SCHEMA_HISTORY
     url: ${spring.datasource.url}
     user: ${spring.datasource.username}
     password: ${spring.datasource.password}
+    placeholders:
+      SCHEMA_NAME: associado
+      APP_USER: ${spring.datasource.username}
+  #    clean-on-validation-error: on
+  #    clean-disabled: false
 
   rabbitmq:
     host: localhost
@@ -41,17 +45,36 @@ rabbitmq:
   queue:
     consume: "associado.cart.out"
 
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+cors:
+  allowedOrigins: '*'
+
+server:
+  port: 8082
+  address: 0.0.0.0
+  tomcat:
+    max-http-form-post-size: 100MB
+    connection-timeout: 6000
+
 logging:
+  file:
+    name: @project.artifactId@.log
+    path: @project.basedir@
   level:
     org.springframework.web: INFO
     org.hibernate: INFO
-    org.hibernate.SQL: DEBUG
-    org.hibernate.type: TRACE
-    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
-    org.hibernate.stat: DEBUG
-    br.com.poupex.ffa.adminstration.api: DEBUG
-    org.flywaydb: TRACE
-    org.flywaydb.core.internal.dbsupport.SqlScript: TRACE
+#    org.hibernate.SQL: DEBUG
+#    org.hibernate.type: TRACE
+#    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+#    org.hibernate.stat: DEBUG
+#    br.com.poupex.ffa.adminstration.api: DEBUG
+#    org.flywaydb: TRACE
+#    org.flywaydb.core.internal.dbsupport.SqlScript: TRACE
 
 keycloak:
   auth-server-url: http://localhost:8080/auth
@@ -60,7 +83,5 @@ keycloak:
   public-client: true
   use-resource-role-mappings: true
   credentials:
-    secret: eFbr2PlVXUMoAmEXJmNUo7djw4FoHvXf
+    secret: 3ztzCn4mnSF4NQMB3onMBPyVeTmGBNs7
 
-server:
-  port: 8082

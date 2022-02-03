@@ -53,12 +53,11 @@ public class AssociadoService {
     @Transactional
     public void solicitarCarteirinha(Associado associado) {
         try {
-            final var connection = this.queueConfig.getConnection();
-            try (var channel = connection.createChannel()) {
+            try (var connection = this.queueConfig.getConnection();
+                 var channel = connection.createChannel()) {
                 final var message = "creation_request_id_" + associado.getId().toString();
                 channel.basicPublish("", NM_CART_QUEUE_IN, null, message.getBytes(StandardCharsets.UTF_8));
             }
-            connection.close();
             associado.setSitCarteirinha(SituacaoCarteirinhaEnum.EM_PROCESSAMENTO);
             this.repository.save(associado);
         } catch (IOException | TimeoutException e) {

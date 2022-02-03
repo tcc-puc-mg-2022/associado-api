@@ -13,7 +13,7 @@ public class AssociadoApiApplication {
     }
 
     @Bean
-    public KeycloakSpringBootConfigResolver keycloakSpringBootConfigResolver(){
+    public KeycloakSpringBootConfigResolver keycloakSpringBootConfigResolver() {
         return new KeycloakSpringBootConfigResolver();
     }
 
