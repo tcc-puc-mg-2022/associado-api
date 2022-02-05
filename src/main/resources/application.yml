@@ -17,7 +17,7 @@ spring:
     open-in-view: false
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:7432/dbassociado?currentSchema=associado
+    url: jdbc:postgresql://dbassociado:8432/dbassociado?currentSchema=associado
     username: "user_associado"
     password: "user_associado"
     hikari:
@@ -36,7 +36,7 @@ spring:
   #    clean-disabled: false
 
   rabbitmq:
-    host: localhost
+    host: srvrabbitmq
     port: 5672
     username: admin
     password: admin
@@ -77,7 +77,7 @@ logging:
 #    org.flywaydb.core.internal.dbsupport.SqlScript: TRACE
 
 keycloak:
-  auth-server-url: http://localhost:8080/auth
+  auth-server-url: http://srvkeycloak:8080/auth
   realm: pucminas
   resource: associado-api
   public-client: true
