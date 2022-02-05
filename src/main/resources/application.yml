@@ -77,11 +77,11 @@ logging:
 #    org.flywaydb.core.internal.dbsupport.SqlScript: TRACE
 
 keycloak:
-  auth-server-url: http://srvkeycloak:8080/auth
+  auth-server-url: ${KCL_AUTH_URL}
   realm: pucminas
   resource: associado-api
   public-client: true
   use-resource-role-mappings: true
   credentials:
-    secret: 3ztzCn4mnSF4NQMB3onMBPyVeTmGBNs7
+    secret: ${KCL_SECRET}
 
