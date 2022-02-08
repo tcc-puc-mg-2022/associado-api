@@ -1,7 +1,3 @@
-/*
- * Copyright (c) 2020, FHE Poupex and/or its affiliates. All rights reserved.
- * FHE POUPEX PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- */
 package br.com.pucminas.tcc.ms.associadoapi.exception;
 
 import lombok.Getter;

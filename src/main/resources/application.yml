@@ -72,7 +72,6 @@ logging:
 #    org.hibernate.type: TRACE
 #    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
 #    org.hibernate.stat: DEBUG
-#    br.com.poupex.ffa.adminstration.api: DEBUG
 #    org.flywaydb: TRACE
 #    org.flywaydb.core.internal.dbsupport.SqlScript: TRACE
 
